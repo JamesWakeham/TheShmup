@@ -22,7 +22,10 @@ public class Player : MonoBehaviour {
             //Slowly moves the player towards the hit position by the speed*delta time
             transform.position = Vector3.MoveTowards(transform.position, hit.point,speed*Time.deltaTime);
             //slightly tilts the player towards the hit position
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, GetTilt(transform.position, hit.point, 20f), 10f);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, GetTilt(transform.position, hit.point, 20f), 50f*Time.deltaTime);
+        } else
+        {
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 50f * Time.deltaTime);
         }
         
     }
