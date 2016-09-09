@@ -17,7 +17,7 @@ public class Player : MonoBehaviour {
         //Stores the data if the ray his an object
         RaycastHit hit;
         //if the raycast hits, outputs the data to the hit variable and returns true
-        if (Physics.Raycast(ray, out hit))
+        if (Physics.Raycast(ray, out hit,100f,9))
         {
             //Slowly moves the player towards the hit position by the speed*delta time
             transform.position = Vector3.MoveTowards(transform.position, hit.point,speed*Time.deltaTime);
@@ -27,7 +27,6 @@ public class Player : MonoBehaviour {
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 50f * Time.deltaTime);
         }
-        
     }
 
     public static Quaternion GetTilt(Vector3 planePosition, Vector3 targetPosition, float tiltAngle)
