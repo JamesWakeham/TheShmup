@@ -6,10 +6,6 @@ public class Player : MonoBehaviour {
     public float speed=5f, timeBetweenShots=0.5f;
     public GameObject Bullet;
     public int bulletsToFire=1;
-	// Use this for initialization
-	void Start () {
-        StartCoroutine(FireLoop());
-	}
 	
 	// Update is called once per frame
 	void Update ()
@@ -31,27 +27,45 @@ public class Player : MonoBehaviour {
         }
     }
 
+    //enumerators are complex but super useful, this one gets called every frame starting from the Start() func
+    void Start()
+    {
+        StartCoroutine(FireLoop());
+    }
+    //this is where its declared
     IEnumerator FireLoop()
     {
+        //while true is usually a massive red flag in programming design, but with enumerators they are totally safe
         while (true)
         {
+            //first it does the fire bullet code
             FireBullet();
+            //then it leaves the function until timeBetweenShots seconds has passed
             yield return new WaitForSeconds(timeBetweenShots);
-            yield return null;
+            //once the time has passed, it returns here to recheck the loop and start all over again
         }
     }
 
     void FireBullet()
     {
+        //creates a temp list
         List<GameObject> temp = new List<GameObject>();
+        //foreach bullet to fire, creates a bullet
         for (int i = 0; i < bulletsToFire; i++)
         {
-            temp.Add( (GameObject)Instantiate(Bullet, transform.position + (Vector3.forward*0), Quaternion.identity));
+            temp.Add( (GameObject)Instantiate(Bullet, transform.position, Quaternion.identity));
         }
-        
-        for (int i = 0; i < temp.Count; i++)
+
+        //if there is more than one bullet
+        if (temp.Count != 1)
         {
-            temp[i].transform.position += new Vector3(Random.Range(-0.5f, 0.5f), 0);
+            //iterate over the list of bullets, shifting them apart based on the number of bullets
+            for (int i = 0; i < temp.Count; i++)
+            {
+                float offset = Mathf.Lerp(-0.5f, 0.5f, (float)i / temp.Count) + (0.5f / temp.Count);
+                //                                        //moves them between -0.5 and 0.5              //shifts them a little as i cant = 1
+                temp[i].transform.position += new Vector3(offset, 0, -Mathf.Abs(offset));
+            }
         }
 
     }

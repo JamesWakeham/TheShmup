@@ -1741,6 +1741,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
+  timeBetweenShots: 0.5
+  Bullet: {fileID: 1000010172775262, guid: 701799442d5499149977328120f02164, type: 2}
+  bulletsToFire: 1
 --- !u!198 &198000010084383008
 ParticleSystem:
   m_ObjectHideFlags: 1

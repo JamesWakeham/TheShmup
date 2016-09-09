@@ -146,6 +146,7 @@ GameObject:
   - 81: {fileID: 603716005}
   - 114: {fileID: 603716010}
   - 114: {fileID: 603716011}
+  - 95: {fileID: 603716012}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -273,6 +274,23 @@ MonoBehaviour:
   blurAndFlaresShader: {fileID: 4800000, guid: be6e39cf196f146d5be72fbefb18ed75, type: 3}
   brightPassFilterShader: {fileID: 4800000, guid: 0aeaa4cb29f5d4e9c8455f04c8575c8c,
     type: 3}
+--- !u!95 &603716012
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 603716004}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8e3c6801f62071941b504721a3bc0e14, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
 --- !u!1 &1053481655 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 1000013218359884, guid: fe7daf83e07be32489d72b5887272dfd,
@@ -444,6 +462,16 @@ Prefab:
     - target: {fileID: 1000013218359884, guid: fe7daf83e07be32489d72b5887272dfd, type: 2}
       propertyPath: m_Layer
       value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010878571016, guid: fe7daf83e07be32489d72b5887272dfd,
+        type: 2}
+      propertyPath: bulletsToFire
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 114000010878571016, guid: fe7daf83e07be32489d72b5887272dfd,
+        type: 2}
+      propertyPath: timeBetweenShots
+      value: 0.5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: fe7daf83e07be32489d72b5887272dfd, type: 2}
