@@ -1,15 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Bullet : MonoBehaviour
-{
+public class Bullet : MonoBehaviour {
 
     // Speed of the Bullet
     public float speed = 20.0f;
 
     // Reference to own transform
     private Transform myTransform;
-
+        
     void Awake()
     {
         // Gets reference to own transform
