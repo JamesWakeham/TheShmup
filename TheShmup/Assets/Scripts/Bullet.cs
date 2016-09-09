@@ -39,11 +39,22 @@ public class Bullet : MonoBehaviour {
 
     void OnTriggerEnter(Collider col)
     {
-        // Checks for an object with either a player tag or an enemy tag while this isn't tagged enemy
-        if (col.gameObject.tag == "Player" || (gameObject.tag != "Enemy" && col.gameObject.tag == "Enemy"))
-            col.gameObject.SendMessage("Hurt");
-        // Destroy itself if it isn't and the colliding object isn't tagged Enemy
-        if (!(gameObject.tag == "Enemy" && col.gameObject.tag == "Enemy"))
+        // Checks if this is tagged as "Enemy"
+        if (gameObject.tag == "Enemy")
+        {
+            // Checks if it is colliding with the player
+            if (col.gameObject.tag == "Player")
+                col.gameObject.SendMessage("Hurt");
+            // Checks if it is colliding with something that isn't an
+            if (col.gameObject.tag != "Enemy")
+                Destroy(gameObject);
+        }
+        else
+        {
+            // Checks if it is colliding with an enemy
+            if (col.gameObject.tag == "Enemy")
+                col.gameObject.SendMessage("Hurt");
             Destroy(gameObject);
+        }
     }
 }

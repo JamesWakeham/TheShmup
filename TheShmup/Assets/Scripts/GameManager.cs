@@ -21,9 +21,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    // Difference Game States
     public enum GAMESTATE
     {
-        Menu, Game
+        Menu,   // Menu, (Displays high score and start button)
+        Game    // Game, actual game.
     };
 
     // Use to Access the Manager
@@ -110,13 +112,13 @@ public class GameManager : MonoBehaviour {
         {
             // Update the score text (with at least 5 digits)
             string txt = "Score: ";
-            if (highScore < 10)
+            if (score <= 9)
                 txt += "0000";
-            else if (highScore < 100)
+            else if (score <= 99)
                 txt += "000";
-            else if (highScore < 1000)
+            else if (score <= 999)
                 txt += "00";
-            else if (highScore < 10000)
+            else if (score <= 9999)
                 txt += "0";
             currScore.text = txt + score.ToString();
 
@@ -184,13 +186,13 @@ public class GameManager : MonoBehaviour {
 
             // Sets the score text on the menu (with at least 5 digits)
             string txt = "High Score:\n";
-            if (highScore < 10)
+            if (highScore <= 9)
                 txt += "0000";
-            else if (highScore < 100)
+            else if (highScore <= 99)
                 txt += "000";
-            else if (highScore < 1000)
+            else if (highScore <= 999)
                 txt += "00";
-            else if (highScore < 10000)
+            else if (highScore <= 9999)
                 txt += "0";
             menuScore.GetComponent<Text>().text = txt + highScore.ToString();
 

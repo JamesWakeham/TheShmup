@@ -43,7 +43,7 @@ public class Enemy : MonoBehaviour {
         shotTimer += Time.deltaTime;
         if (shotTimer > nextShot)
         {
-            GameObject reff = Instantiate(bullet, myTransform.position + (myTransform.forward * 1.25f), myTransform.rotation) as GameObject;
+            GameObject reff = Instantiate(bullet, myTransform.position + (myTransform.forward * 0.8f), myTransform.rotation) as GameObject;
             reff.tag = "Enemy";
             shotTimer = 0;
             nextShot = Random.Range(minShotTime, maxShotTime);
