@@ -20,7 +20,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000012850998550}
   - 108: {fileID: 108000013347013100}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Point light
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -37,7 +37,7 @@ GameObject:
   - 4: {fileID: 4000014062096106}
   - 33: {fileID: 33000012567693780}
   - 23: {fileID: 23000010093189978}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftFuselageRudderLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -54,7 +54,7 @@ GameObject:
   - 4: {fileID: 4000011472793604}
   - 33: {fileID: 33000010031095138}
   - 23: {fileID: 23000012479959794}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetDoorLeftRear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -71,7 +71,7 @@ GameObject:
   - 4: {fileID: 4000010820536934}
   - 33: {fileID: 33000010822330510}
   - 23: {fileID: 23000014286835990}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetAileronLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -88,7 +88,7 @@ GameObject:
   - 4: {fileID: 4000013572230800}
   - 33: {fileID: 33000012628343946}
   - 23: {fileID: 23000011863833222}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetGearLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -105,7 +105,7 @@ GameObject:
   - 4: {fileID: 4000014283078384}
   - 33: {fileID: 33000010426356084}
   - 23: {fileID: 23000010709721092}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetFlapRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -122,7 +122,7 @@ GameObject:
   - 4: {fileID: 4000011750686896}
   - 33: {fileID: 33000012021932160}
   - 23: {fileID: 23000010254415290}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetSlatRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - 4: {fileID: 4000012275447326}
   - 33: {fileID: 33000010245079386}
   - 23: {fileID: 23000011638670690}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetDoorLeftFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -156,7 +156,7 @@ GameObject:
   - 4: {fileID: 4000011939358502}
   - 33: {fileID: 33000011429855464}
   - 23: {fileID: 23000013017879812}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetGearRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -173,7 +173,7 @@ GameObject:
   - 4: {fileID: 4000011491635480}
   - 33: {fileID: 33000013860666896}
   - 23: {fileID: 23000014007251024}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftFuselageRudderRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -190,7 +190,7 @@ GameObject:
   - 4: {fileID: 4000010662664912}
   - 33: {fileID: 33000011583963426}
   - 23: {fileID: 23000012567947294}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetWing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -207,7 +207,7 @@ GameObject:
   - 4: {fileID: 4000010471497478}
   - 33: {fileID: 33000010900003854}
   - 23: {fileID: 23000013340294090}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetFlapLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,7 +224,7 @@ GameObject:
   - 4: {fileID: 4000012187877002}
   - 33: {fileID: 33000012715203010}
   - 23: {fileID: 23000013361632220}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetGearFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -241,7 +241,7 @@ GameObject:
   - 4: {fileID: 4000010836047428}
   - 33: {fileID: 33000013173266510}
   - 23: {fileID: 23000011301375562}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetSlatLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -258,7 +258,7 @@ GameObject:
   - 4: {fileID: 4000010122566092}
   - 33: {fileID: 33000014047304190}
   - 23: {fileID: 23000011144901934}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetGearWheelFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -275,7 +275,7 @@ GameObject:
   - 4: {fileID: 4000012435397848}
   - 198: {fileID: 198000012134504230}
   - 199: {fileID: 199000013342178698}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -292,7 +292,7 @@ GameObject:
   - 4: {fileID: 4000014171658112}
   - 33: {fileID: 33000012420254688}
   - 23: {fileID: 23000012605532050}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftFuselageBody
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -309,7 +309,7 @@ GameObject:
   - 4: {fileID: 4000011464119218}
   - 33: {fileID: 33000013633871378}
   - 23: {fileID: 23000011154626014}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetDoorRightRear
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -326,7 +326,7 @@ GameObject:
   - 4: {fileID: 4000010706858704}
   - 33: {fileID: 33000013243069592}
   - 23: {fileID: 23000013166663188}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftFuselageGearDoorRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -341,7 +341,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000012408254742}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJet
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -357,7 +357,8 @@ GameObject:
   m_Component:
   - 4: {fileID: 4000010384288790}
   - 114: {fileID: 114000010878571016}
-  m_Layer: 0
+  - 65: {fileID: 65000014023877718}
+  m_Layer: 10
   m_Name: Player
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -374,7 +375,7 @@ GameObject:
   - 4: {fileID: 4000011996497558}
   - 33: {fileID: 33000012084666506}
   - 23: {fileID: 23000012617370564}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetGearWheelLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -391,7 +392,7 @@ GameObject:
   - 4: {fileID: 4000011134924996}
   - 33: {fileID: 33000012038469188}
   - 23: {fileID: 23000013526701748}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftFuselageGearDoorLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -408,7 +409,7 @@ GameObject:
   - 4: {fileID: 4000011063448554}
   - 33: {fileID: 33000011906612948}
   - 23: {fileID: 23000013135254402}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetDoorRightFront
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -423,7 +424,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000010255067052}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftFuselage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -440,7 +441,7 @@ GameObject:
   - 4: {fileID: 4000014111741382}
   - 33: {fileID: 33000011228969694}
   - 23: {fileID: 23000013208353034}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetAileronRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -457,7 +458,7 @@ GameObject:
   - 4: {fileID: 4000012479835386}
   - 198: {fileID: 198000012269120864}
   - 199: {fileID: 199000012903967082}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -474,7 +475,7 @@ GameObject:
   - 4: {fileID: 4000012670970352}
   - 33: {fileID: 33000010371509140}
   - 23: {fileID: 23000013531121640}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: AircraftWingsJetGearWheelRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -491,7 +492,7 @@ GameObject:
   - 4: {fileID: 4000010043465576}
   - 198: {fileID: 198000010084383008}
   - 199: {fileID: 199000013815511022}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Particle System (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -1695,6 +1696,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1000012571207318}
   m_Mesh: {fileID: 4300126, guid: 63742edd796d522458d772b44affdf9b, type: 3}
+--- !u!65 &65000014023877718
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000013218359884}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.2, y: 1, z: 0.5}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!108 &108000013347013100
 Light:
   m_ObjectHideFlags: 1
@@ -1741,9 +1754,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 5
-  timeBetweenShots: 0.5
+  timeBetweenShots: 0.3
   Bullet: {fileID: 1000010172775262, guid: 701799442d5499149977328120f02164, type: 2}
-  bulletsToFire: 1
+  bulletsToFire: 3
 --- !u!198 &198000010084383008
 ParticleSystem:
   m_ObjectHideFlags: 1
