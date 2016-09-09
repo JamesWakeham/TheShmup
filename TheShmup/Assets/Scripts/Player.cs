@@ -1,12 +1,14 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class Player : MonoBehaviour {
-    public float speed;
+    public float speed=5f, timeBetweenShots=0.5f;
     public GameObject Bullet;
+    public int bulletsToFire=1;
 	// Use this for initialization
 	void Start () {
-
+        StartCoroutine(FireLoop());
 	}
 	
 	// Update is called once per frame
@@ -27,6 +29,31 @@ public class Player : MonoBehaviour {
         {
             transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 50f * Time.deltaTime);
         }
+    }
+
+    IEnumerator FireLoop()
+    {
+        while (true)
+        {
+            FireBullet();
+            yield return new WaitForSeconds(timeBetweenShots);
+            yield return null;
+        }
+    }
+
+    void FireBullet()
+    {
+        List<GameObject> temp = new List<GameObject>();
+        for (int i = 0; i < bulletsToFire; i++)
+        {
+            temp.Add( (GameObject)Instantiate(Bullet, transform.position + (Vector3.forward*0), Quaternion.identity));
+        }
+        
+        for (int i = 0; i < temp.Count; i++)
+        {
+            temp[i].transform.position += new Vector3(Random.Range(-0.5f, 0.5f), 0);
+        }
+
     }
 
     public static Quaternion GetTilt(Vector3 planePosition, Vector3 targetPosition, float tiltAngle)
