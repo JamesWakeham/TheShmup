@@ -1,5 +1,12 @@
-﻿using UnityEngine;
-using System.Collections;
+﻿/*
+ * ENEMY
+ *     Moves the object on its local forward axis, shooting bullets.
+ *     The amount of time it takes between shots is different each time ranging between minShotTime and maxShotTime.
+ *     The speed of the object is different on spawn to add diversity to each enemy, raging between minSpeed and maxSpeed.
+ *      
+ */
+
+using UnityEngine;
 
 public class Enemy : MonoBehaviour {
 

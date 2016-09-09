@@ -1,8 +1,16 @@
 ﻿/*
- * 
- * NOTE:
- *      This script is still a work in progress, however
- *      the IncreaseScore function is needed for the Enemy script.
+ * GAME MANAGER
+ *      Usable without using GetComponent, simply use GameManager.refer to access public aspects.
+ *      Public Functions:
+ *          - IncreaseScore(int): Increases score and kill count.
+ *          - ResetCount(): Resets the kill count and allows for another boss spawn.
+ *          - ShowRestart(): Changes the game state back to menu.
+ *          - Reload(): Changes the game state to game and spawns a player object.
+ *      Public Variables:
+ *          - refer: A reference to itself, use to access public functions and varibles.
+ *          - minSpawnTime / maxSpawnTime: Minimum and maximum spawn times for enemies.
+ *          - gameState: Retruns currentGameState without being able to change it.
+ *          - GAMESTATE: Enum of different game states.
  *      
  */
 
@@ -13,6 +21,11 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour {
 
+    public enum GAMESTATE
+    {
+        Menu, Game
+    };
+
     // Use to Access the Manager
     public static GameManager refer;
     
@@ -20,6 +33,9 @@ public class GameManager : MonoBehaviour {
     public GameObject enemy;
     public GameObject boss;
     public GameObject player;
+
+    // Transform for enemy / boss spawning reference,
+    // will spawn enemies on X based on the negative and positive value of the transform.
     public Transform spawner;
 
     // Reference for UI
@@ -42,11 +58,11 @@ public class GameManager : MonoBehaviour {
 
     // Spawn and game control
     private bool bossSpawned = false;
-    private bool isGameActive = false;
-    // Public access to check game state
-    public bool isGameRunning
+    private GAMESTATE currentGameState = GAMESTATE.Menu;
+    // Public access to game state
+    public GAMESTATE gameState
     {
-        get { return isGameActive; }
+        get { return currentGameState; }
     }
     
     void Awake()
@@ -89,9 +105,10 @@ public class GameManager : MonoBehaviour {
 
     void Update()
     {
-        if (isGameActive)
+        // Checks game state
+        if (currentGameState == GAMESTATE.Game)
         {
-            // Update Score text
+            // Update the score text (with at least 5 digits)
             string txt = "Score: ";
             if (highScore < 10)
                 txt += "0000";
@@ -110,19 +127,38 @@ public class GameManager : MonoBehaviour {
                 if (spawnTimer > nextSpawn)
                 {
                     // Spawns Enemy
-                    Instantiate(enemy, new Vector3(Random.Range(-spawner.transform.position.x, spawner.transform.position.x), 0, spawner.transform.position.z), Quaternion.Euler(180, 0, 0));
+                    Instantiate(enemy, new Vector3(Random.Range(-spawner.transform.position.x, spawner.transform.position.x), spawner.transform.position.y, spawner.transform.position.z), Quaternion.Euler(0, 180, 0));
                     nextSpawn = Random.Range(minSpawnTime, maxSpawnTime);
                     spawnTimer = 0;
+                }
+            }
+            // Checks if Boss is spawned
+            else if (count >= needCount && !bossSpawned)
+            {
+                // Waits until all enemies are killed
+                if (GameObject.FindGameObjectWithTag("Enemy") == null)
+                {
+                    // Spawns boss
+                    Instantiate(boss, new Vector3(0, spawner.position.y, spawner.position.z), spawner.rotation);
+                    // stop Boss from spawning again
+                    bossSpawned = true;
                 }
             }
         }
     }
 
-    // Increases score and count (Called by enemy when hurt)
+    // Resets the KillCount (Called by boss when killed)
+    public void ResetCount()
+    {
+        count = 0;
+        bossSpawned = false;
+    }
+
+    // Increases score and count (Called by enemy and boss when killed)
     public void IncreaseScore(int amount)
     {
         // Checks if games running
-        if (isGameActive)
+        if (currentGameState == GAMESTATE.Game)
         {
             // Increases the score
             score += amount;
@@ -131,48 +167,59 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // Shows the top score and reload button (Called by player when hurt)
+    // Shows the top score and reload button (Called by player when killed)
     public void ShowRestart()
     {
-        // Switches game state
-        isGameActive = false;
-
-        if (score > highScore)
+        // Checks game state
+        if (currentGameState == GAMESTATE.Game)
         {
-            highScore = score;
+            // Switches game state
+            currentGameState = GAMESTATE.Menu;
+
+            // Checks and set new high scores
+            if (score > highScore)
+            {
+                highScore = score;
+            }
+
+            // Sets the score text on the menu (with at least 5 digits)
+            string txt = "High Score:\n";
+            if (highScore < 10)
+                txt += "0000";
+            else if (highScore < 100)
+                txt += "000";
+            else if (highScore < 1000)
+                txt += "00";
+            else if (highScore < 10000)
+                txt += "0";
+            menuScore.GetComponent<Text>().text = txt + highScore.ToString();
+
+            // Change what on the canvas is showing
+            currScore.enabled = false;
+            menuScore.SetActive(true);
         }
-
-        // Sets the score text on the menu (with at least 5 digits)
-        string txt = "High Score:\n";
-        if (highScore < 10)
-            txt += "0000";
-        else if (highScore < 100)
-            txt += "000";
-        else if (highScore < 1000)
-            txt += "00";
-        else if (highScore < 10000)
-            txt += "0";
-        menuScore.GetComponent<Text>().text = txt + highScore.ToString();
-
-        currScore.enabled = false;
-        menuScore.SetActive(true);
     }
 
     // Reloads the scene (Called by button)
     public void Reload()
     {
-        // Reset variables
-        score = 0;
-        count = 0;
-        needCount = 20;
+        // Checks game state
+        if (currentGameState == GAMESTATE.Menu)
+        {
+            // Reset variables
+            score = 0;
+            count = 0;
+            needCount = 20;
 
-        currScore.enabled = true;
-        menuScore.SetActive(false);
+            // Change what on the canvas is showing
+            currScore.enabled = true;
+            menuScore.SetActive(false);
 
-        // Reload player
-        Instantiate(player);
+            // Reload player
+            Instantiate(player);
 
-        // Switch games state
-        isGameActive = true;
+            // Switch games state
+            currentGameState = GAMESTATE.Game;
+        }
     }
 }
