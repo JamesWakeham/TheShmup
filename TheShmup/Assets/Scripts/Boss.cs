@@ -14,6 +14,8 @@ public class Boss : MonoBehaviour {
 
     public Vector3 target;
 
+    private int health = 5;
+
 
     public float minShotTime = 1.5f;
     public float maxShotTime = 3.5f;
@@ -73,7 +75,14 @@ public class Boss : MonoBehaviour {
     public void Hurt()
     {
         GameManager.refer.IncreaseScore(100);
-        Destroy(gameObject);
+        health -= 1;
+
+        if(health <= 0)
+        {
+            Destroy(gameObject);
+        }
+
+
     }
 
     // Desroy the object if colliding with something that isn't tagged as enemy
