@@ -69,6 +69,28 @@ public class Boss : MonoBehaviour {
 
     }
 
+    // Kill the boss and increase score by 100
+    public void Hurt()
+    {
+        GameManager.refer.IncreaseScore(100);
+        Destroy(gameObject);
+    }
+
+    // Desroy the object if colliding with something that isn't tagged as enemy
+    void OnTriggerEnter(Collider col)
+    {
+        // Checks for a player, if so sends Hurt to the player as well
+        if (col.gameObject.tag == "Player")
+        {
+            col.gameObject.SendMessage("Hurt");
+            Destroy(gameObject);
+        }
+        // Destroys itself if colliding with something that isn't tagged Enemy
+        else if (col.gameObject.tag != "Enemy")
+            Destroy(gameObject);
+    }
+
+
 
     Vector3 velocity;
 
