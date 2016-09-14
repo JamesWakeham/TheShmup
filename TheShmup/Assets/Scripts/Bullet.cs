@@ -54,7 +54,9 @@ public class Bullet : MonoBehaviour {
             // Checks if it is colliding with an enemy
             if (col.gameObject.tag == "Enemy")
                 col.gameObject.SendMessage("Hurt");
-            Destroy(gameObject);
+            // Checks if it is colliding with a player
+            else if (col.gameObject.tag != "Player")
+                Destroy(gameObject);
         }
     }
 }
