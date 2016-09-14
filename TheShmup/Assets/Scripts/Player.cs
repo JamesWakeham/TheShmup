@@ -15,12 +15,14 @@ public class Player : MonoBehaviour {
         //Stores the data if the ray his an object
         RaycastHit hit;
         //if the raycast hits, outputs the data to the hit variable and returns true
-        if (Physics.Raycast(ray, out hit,100f,9))
+        if (Physics.Raycast(ray, out hit))
         {
+            //removes the y axis to stop player from moving upwards
+            Vector3 flatVec = new Vector3(hit.point.x, 0, hit.point.z);
             //Slowly moves the player towards the hit position by the speed*delta time
-            transform.position = Vector3.MoveTowards(transform.position, hit.point,speed*Time.deltaTime);
+            transform.position = Vector3.MoveTowards(transform.position, flatVec,speed*Time.deltaTime);
             //slightly tilts the player towards the hit position
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, GetTilt(transform.position, hit.point, 40f), 50f*Time.deltaTime);
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, GetTilt(transform.position, flatVec, 40f), 50f*Time.deltaTime);
         } else
         {
             //else rotates it back to straight up
@@ -64,11 +66,18 @@ public class Player : MonoBehaviour {
             for (int i = 0; i < temp.Count; i++)
             {
                 float offset = Mathf.Lerp(-0.5f, 0.5f, (float)i / temp.Count) + (0.5f / temp.Count);
-                //                                        //moves them between -0.5 and 0.5              //shifts them a little as i cant = 1
-                temp[i].transform.position += new Vector3(offset, 0, -Mathf.Abs(offset));
+                //                   //moves them between -0.5 and 0.5              //shifts them a little as i cant = 1
+                temp[i].transform.position += new Vector3(offset, 0, -Mathf.Abs(offset) + 1.5f);
+
+                temp[i].tag = "Player";
             }
         }
 
+    }
+
+    public void Hurt ()
+    {
+        Destroy(gameObject);
     }
 
     public static Quaternion GetTilt(Vector3 planePosition, Vector3 targetPosition, float tiltAngle)
