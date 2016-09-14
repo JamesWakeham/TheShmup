@@ -122,6 +122,12 @@ public class GameManager : MonoBehaviour {
                 txt += "0";
             currScore.text = txt + score.ToString();
 
+            // Resets the game if the player is dead
+            if (GameObject.FindGameObjectWithTag("Player") == null)
+            {
+                ShowRestart();
+            }
+
             // Check current enemy count for boss spawning
             if (count < needCount)
             {
@@ -175,7 +181,7 @@ public class GameManager : MonoBehaviour {
         }
     }
 
-    // Shows the top score and reload button (Called by player when killed)
+    // Shows the top score and reload button
     public void ShowRestart()
     {
         // Checks game state
