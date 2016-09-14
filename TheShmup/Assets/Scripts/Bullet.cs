@@ -55,7 +55,7 @@ public class Bullet : MonoBehaviour {
             if (col.gameObject.tag == "Enemy")
                 col.gameObject.SendMessage("Hurt");
             // Checks if it is colliding with a player
-            else if (col.gameObject.tag != "Player")
+            if (col.gameObject.tag != "Player")
                 Destroy(gameObject);
         }
     }

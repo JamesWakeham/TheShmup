@@ -140,20 +140,26 @@ public class GameManager : MonoBehaviour {
                 // Waits until all enemies are killed
                 if (GameObject.FindGameObjectWithTag("Enemy") == null)
                 {
-                    // Spawns boss
-                    Instantiate(boss, new Vector3(0, spawner.position.y, spawner.position.z), spawner.rotation);
-                    // stop Boss from spawning again
-                    bossSpawned = true;
+                    // Spawns boss after a 2 second delay
+                    if (spawnTimer > 2)
+                    {
+                        // Spawns boss
+                        Instantiate(boss, new Vector3(0, spawner.position.y, spawner.position.z), Quaternion.Euler(0, 180, 0));
+                        // stop Boss from spawning again
+                        bossSpawned = true;
+                    }
+                    spawnTimer += Time.deltaTime;
                 }
             }
+            // Checks if the boss has been spawned, and no enemies now exist in the scene
+            else if (bossSpawned && GameObject.FindGameObjectWithTag("Enemy") == null)
+            {
+                // Reset values
+                spawnTimer = 0;
+                count = 0;
+                bossSpawned = false;
+            }
         }
-    }
-
-    // Resets the KillCount (Called by boss when killed)
-    public void ResetCount()
-    {
-        count = 0;
-        bossSpawned = false;
     }
 
     // Increases score and count (Called by enemy and boss when killed)
