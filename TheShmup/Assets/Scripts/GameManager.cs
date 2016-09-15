@@ -127,7 +127,7 @@ public class GameManager : MonoBehaviour {
             currScore.text = txt + score.ToString();
 
             // Resets the game if the player is dead
-            if (player == null)
+            if (playerInstance == null)
             {
                 ShowRestart();
             }
@@ -184,7 +184,6 @@ public class GameManager : MonoBehaviour {
             // Increases the count
             count++;
             //every hundred points you get an upgrade
-            Debug.Log(nextUpgrade + "next upgrade : score " + score);
             if (nextUpgrade <= score)
             {
                 playerInstance.UpgradeGuns();

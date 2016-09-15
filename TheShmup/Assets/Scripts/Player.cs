@@ -111,7 +111,8 @@ public class Player : MonoBehaviour {
     public void UpgradeGuns ()
     {
         upgrade.Play();
-        bulletsToFire++;
+        if (bulletsToFire < 6)
+            bulletsToFire++;
         timeBetweenShots *= 0.9f;
     }
 
