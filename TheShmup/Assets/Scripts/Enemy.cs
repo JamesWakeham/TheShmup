@@ -11,7 +11,7 @@ using UnityEngine;
 public class Enemy : MonoBehaviour {
 
     // Reference to bullet
-    public GameObject bullet;
+    public GameObject bullet, deathPrefab;
     
     // Private variables
     private float shotTimer = 0;
@@ -56,7 +56,14 @@ public class Enemy : MonoBehaviour {
     // Kill the object and increase score by 10
     public void Hurt()
     {
+        Die();
+    }
+
+    void Die ()
+    {
         GameManager.refer.IncreaseScore(10);
+        GameObject explo = (GameObject)Instantiate(deathPrefab, transform.position, Quaternion.identity);
+        Destroy(explo, 3);
         Destroy(gameObject);
     }
 
@@ -67,10 +74,10 @@ public class Enemy : MonoBehaviour {
         if (col.gameObject.tag == "Player")
         {
             col.gameObject.SendMessage("Hurt");
-            Destroy(gameObject);
+            Die();
         }
         // Destroys itself if colliding with something that isn't tagged Enemy
         else if (col.gameObject.tag != "Enemy")
-            Destroy(gameObject);
+            Die();
     }
 }

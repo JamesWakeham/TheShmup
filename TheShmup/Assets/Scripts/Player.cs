@@ -6,6 +6,7 @@ public class Player : MonoBehaviour {
     public float speed=5f, timeBetweenShots=0.5f;
     public GameObject Bullet;
     public int bulletsToFire=1;
+    public AudioSource shootSound, upgrade;
 	
 	// Update is called once per frame
 	void Update ()
@@ -51,6 +52,8 @@ public class Player : MonoBehaviour {
 
     void FireBullet()
     {
+        shootSound.pitch = Random.Range(0.8f, 1.2f);
+        shootSound.Play();
         //creates a temp list
         List<GameObject> temp = new List<GameObject>();
         //foreach bullet to fire, creates a bullet
@@ -67,12 +70,18 @@ public class Player : MonoBehaviour {
             {
                 float offset = Mathf.Lerp(-0.5f, 0.5f, (float)i / temp.Count) + (0.5f / temp.Count);
                 //                   //moves them between -0.5 and 0.5              //shifts them a little as i cant = 1
-                temp[i].transform.position += new Vector3(offset, 0, -Mathf.Abs(offset) + 1.5f);
+                temp[i].transform.position += new Vector3(offset, 0, -Mathf.Abs(offset) + 0.5f);
 
                 temp[i].tag = "Player";
             }
         }
+    }
 
+    public void UpgradeGuns ()
+    {
+        upgrade.Play();
+        bulletsToFire++;
+        timeBetweenShots *= 0.9f;
     }
 
     public void Hurt ()

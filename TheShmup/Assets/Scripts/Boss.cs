@@ -5,16 +5,17 @@ public class Boss : MonoBehaviour {
 
 
     public GameObject player;
-    public float m_Health;
     public GameObject m_bullet;
     private float shotTimer = 0;
     private float nextShot;
     public Vector3 t_left;
     public Vector3 t_right;
 
+    public AudioSource hurtSound;
+
     public Vector3 target;
 
-    private int health = 5;
+    private int health = 25;
 
 
     public float minShotTime = 1.5f;
@@ -23,7 +24,7 @@ public class Boss : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-	
+        hurtSound = GetComponent<AudioSource>();
         if(player == null)
         {
             player = GameObject.FindGameObjectWithTag("Player");
@@ -74,29 +75,28 @@ public class Boss : MonoBehaviour {
     // Kill the boss and increase score by 100
     public void Hurt()
     {
-        GameManager.refer.IncreaseScore(100);
+        hurtSound.Play();
         health -= 1;
 
         if(health <= 0)
         {
+            GameManager.refer.IncreaseScore(10);
             Destroy(gameObject);
         }
-
-
     }
 
     // Desroy the object if colliding with something that isn't tagged as enemy
     void OnTriggerEnter(Collider col)
     {
-        // Checks for a player, if so sends Hurt to the player as well
-        if (col.gameObject.tag == "Player")
-        {
-            col.gameObject.SendMessage("Hurt");
-            Destroy(gameObject);
-        }
-        // Destroys itself if colliding with something that isn't tagged Enemy
-        else if (col.gameObject.tag != "Enemy")
-            Destroy(gameObject);
+        //// Checks for a player, if so sends Hurt to the player as well
+        //if (col.gameObject.tag == "Player")
+        //{
+        //    col.gameObject.SendMessage("Hurt");
+        //    Destroy(gameObject);
+        //}
+        //// Destroys itself if colliding with something that isn't tagged Enemy
+        //else if (col.gameObject.tag != "Enemy")
+        //    Destroy(gameObject);
     }
 
 

@@ -36,6 +36,9 @@ public class GameManager : MonoBehaviour {
     public GameObject boss;
     public GameObject player;
 
+
+    public Player playerInstance;
+
     // Transform for enemy / boss spawning reference,
     // will spawn enemies on X based on the negative and positive value of the transform.
     public Transform spawner;
@@ -57,10 +60,11 @@ public class GameManager : MonoBehaviour {
     // Score
     private int score = 0;
     private int highScore = 0;
+    int nextUpgrade = 100;
 
     // Spawn and game control
     private bool bossSpawned = false;
-    private GAMESTATE currentGameState = GAMESTATE.Menu;
+    public GAMESTATE currentGameState = GAMESTATE.Menu;
     // Public access to game state
     public GAMESTATE gameState
     {
@@ -123,7 +127,7 @@ public class GameManager : MonoBehaviour {
             currScore.text = txt + score.ToString();
 
             // Resets the game if the player is dead
-            if (GameObject.FindGameObjectWithTag("Player") == null)
+            if (player == null)
             {
                 ShowRestart();
             }
@@ -135,7 +139,7 @@ public class GameManager : MonoBehaviour {
                 if (spawnTimer > nextSpawn)
                 {
                     // Spawns Enemy
-                    Instantiate(enemy, new Vector3(Random.Range(-spawner.transform.position.x, spawner.transform.position.x), spawner.transform.position.y, spawner.transform.position.z), Quaternion.Euler(0, 180, 0));
+                    Instantiate(enemy, new Vector3(Random.Range(-3, 3), spawner.transform.position.y, spawner.transform.position.z), Quaternion.Euler(0, 180, 0));
                     nextSpawn = Random.Range(minSpawnTime, maxSpawnTime);
                     spawnTimer = 0;
                 }
@@ -149,6 +153,7 @@ public class GameManager : MonoBehaviour {
                     // Spawns boss after a 2 second delay
                     if (spawnTimer > 2)
                     {
+                        Debug.Log("Boss Spawned");
                         // Spawns boss
                         Instantiate(boss, new Vector3(0, spawner.position.y, spawner.position.z), Quaternion.Euler(0, 180, 0));
                         // stop Boss from spawning again
@@ -178,6 +183,13 @@ public class GameManager : MonoBehaviour {
             score += amount;
             // Increases the count
             count++;
+            //every hundred points you get an upgrade
+            Debug.Log(nextUpgrade + "next upgrade : score " + score);
+            if (nextUpgrade <= score)
+            {
+                playerInstance.UpgradeGuns();
+                nextUpgrade += 100;
+            }
         }
     }
 
@@ -230,7 +242,7 @@ public class GameManager : MonoBehaviour {
             menuScore.SetActive(false);
 
             // Reload player
-            Instantiate(player);
+            playerInstance = Instantiate(player).GetComponent<Player>();
 
             // Switch games state
             currentGameState = GAMESTATE.Game;

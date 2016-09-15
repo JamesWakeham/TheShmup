@@ -15,7 +15,7 @@ public class Bullet : MonoBehaviour {
 
     // Speed of the Bullet
     public float speed = 20.0f;
-
+   
     // Reference to own transform
     private Transform myTransform;
         
