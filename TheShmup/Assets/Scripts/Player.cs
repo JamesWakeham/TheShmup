@@ -10,23 +10,54 @@ public class Player : MonoBehaviour {
 	// Update is called once per frame
 	void Update ()
     {
-        //Shoots a ray from the camera, through a point on the screen
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-        //Stores the data if the ray his an object
-        RaycastHit hit;
-        //if the raycast hits, outputs the data to the hit variable and returns true
-        if (Physics.Raycast(ray, out hit))
+        if(Application.platform == RuntimePlatform.WindowsPlayer || Application.platform == RuntimePlatform.WindowsEditor) // if platform is Windows/Unity
         {
-            //removes the y axis to stop player from moving upwards
-            Vector3 flatVec = new Vector3(hit.point.x, 0, hit.point.z);
-            //Slowly moves the player towards the hit position by the speed*delta time
-            transform.position = Vector3.MoveTowards(transform.position, flatVec,speed*Time.deltaTime);
-            //slightly tilts the player towards the hit position
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, GetTilt(transform.position, flatVec, 40f), 50f*Time.deltaTime);
-        } else
+            //Shoots a ray from the camera, through a point on the screen
+            Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+            //Stores the data if the ray his an object
+            RaycastHit hit;
+            //if the raycast hits, outputs the data to the hit variable and returns true
+            if (Physics.Raycast(ray, out hit))
+            {
+                //removes the y axis to stop player from moving upwards
+                Vector3 flatVec = new Vector3(hit.point.x, 0, hit.point.z);
+                //Slowly moves the player towards the hit position by the speed*delta time
+                transform.position = Vector3.MoveTowards(transform.position, flatVec, speed * Time.deltaTime);
+                //slightly tilts the player towards the hit position
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, GetTilt(transform.position, flatVec, 40f), 50f * Time.deltaTime);
+            }
+            else
+            {
+                //else rotates it back to straight up
+                transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 50f * Time.deltaTime);
+            }
+        }
+        else if(Application.platform == RuntimePlatform.Android)
         {
-            //else rotates it back to straight up
-            transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 50f * Time.deltaTime);
+            //If the player is touching their android screen
+            if(Input.touches.Length > 0)
+            {
+                // Shoot a ray out from the Camera; based on the Vector2 position produced by the player touching his screen
+                Ray ray = Camera.main.ScreenPointToRay(Input.touches[0].position);
+
+                //Stores the data if the ray his an object
+                RaycastHit hit;
+                //if the raycast hits, outputs the data to the hit variable and returns true
+                if (Physics.Raycast(ray, out hit))
+                {
+                    //removes the y axis to stop player from moving upwards
+                    Vector3 flatVec = new Vector3(hit.point.x, 0, hit.point.z);
+                    //Slowly moves the player towards the hit position by the speed*delta time
+                    transform.position = Vector3.MoveTowards(transform.position, flatVec, speed * Time.deltaTime);
+                    //slightly tilts the player towards the hit position
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, GetTilt(transform.position, flatVec, 40f), 50f * Time.deltaTime);
+                }
+                else
+                {
+                    //else rotates it back to straight up
+                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.identity, 50f * Time.deltaTime);
+                }
+            }
         }
     }
 
