@@ -74,11 +74,12 @@ public class Boss : MonoBehaviour {
     // Kill the boss and increase score by 100
     public void Hurt()
     {
-        GameManager.refer.IncreaseScore(100);
+     
         health -= 1;
 
         if(health <= 0)
         {
+            GameManager.refer.IncreaseScore(100);
             Destroy(gameObject);
         }
 
@@ -94,9 +95,6 @@ public class Boss : MonoBehaviour {
             col.gameObject.SendMessage("Hurt");
             Destroy(gameObject);
         }
-        // Destroys itself if colliding with something that isn't tagged Enemy
-        else if (col.gameObject.tag != "Enemy")
-            Destroy(gameObject);
     }
 
 
