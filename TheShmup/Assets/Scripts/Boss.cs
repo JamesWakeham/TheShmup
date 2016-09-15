@@ -75,12 +75,12 @@ public class Boss : MonoBehaviour {
     // Kill the boss and increase score by 100
     public void Hurt()
     {
-        hurtSound.Play();
+     
         health -= 1;
 
         if(health <= 0)
         {
-            GameManager.refer.IncreaseScore(10);
+            GameManager.refer.IncreaseScore(100);
             Destroy(gameObject);
         }
     }
